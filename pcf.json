@@ -96,7 +96,7 @@
       "Description":"Suggested default value for Create Network->Gateway"
     },
     "23ERSTile": {
-      "Value" : {}
+      "Value" : {},
       "Description" : "Elastic Runtime Configruation Values"
     },
     "24RDSHost": {
