@@ -3,7 +3,7 @@
   "Description": "pivotalcf template",
   "Outputs": {
     "00OpsMngTile": {
-      "Value" : {}
+      "Value" : {},
       "Description" : "AWS Ops Manager Director Configruation Values"
     },
     "01AccessKeyID": {
