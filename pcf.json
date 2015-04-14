@@ -135,7 +135,7 @@
     }
    }    
 
-  },
+  }
   "Parameters": {
     "ElasticRuntimeURL": {
       "Type": "String",
