@@ -4,8 +4,7 @@
   "Outputs": 
   {
     "00OpsMngConfig": {
-      "Value" : {" "},
-      "Description" : "AWS Ops Manager Director Configruation Values"
+      "Value" : "AWS Ops Manager Director Configruation Values"
     },
     "00OpsManDNS" : {
       "Value" : { "Fn::GetAtt": [ "OpsManagerInstance", "PublicDnsName" ] },
@@ -100,8 +99,7 @@
       "Description":"Suggested default value for Create Network->Gateway"
     },
     "23ERSTile": {
-      "Value" : {" "},
-      "Description" : "Elastic Runtime Configruation Values"
+      "Value" : "Elastic Runtime Configruation Values"
     },
     "24RDSHost": {
       "Value": {"Fn::GetAtt" : [ "MyRDS" , "Endpoint.Address" ]},
