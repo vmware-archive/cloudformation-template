@@ -1,14 +1,14 @@
 
 {
-  "Description": "pivotalcf template",
+  "Description": "Template for configuring Pivotal Cloud Foundry on AWS",
   "Outputs": 
   {
-    "00OpsMngConfig": {
-      "Value" : "AWS Ops Manager Director Configruation Values"
-    },
     "00OpsManDNS" : {
       "Value" : { "Fn::GetAtt": [ "OpsManagerInstance", "PublicDnsName" ] },
       "Description" : "The public DNS name of your OpsManger"
+    },
+    "00DirectorConfigs": {
+      "Value" : ""
     },
     "01AccessKeyID": {
       "Value" : { "Ref" : "myaccesskey" },
@@ -98,8 +98,8 @@
       "Value":"10.0.16.1",
       "Description":"Suggested default value for Create Network->Gateway"
     },
-    "23ERSTile": {
-      "Value" : "Elastic Runtime Configruation Values"
+    "23ElasticRuntimeConfigs": {
+      "Value" : ""
     },
     "24RDSHost": {
       "Value": {"Fn::GetAtt" : [ "MyRDS" , "Endpoint.Address" ]},
