@@ -2,9 +2,13 @@
 {
   "Description": "pivotalcf template",
   "Outputs": {
-    "00OpsMngTile": {
+    "00OpsMngConfig": {
       "Value" : {},
       "Description" : "AWS Ops Manager Director Configruation Values"
+    },
+    "00OpsManDNS" : {
+      "Value" : { "Fn::GetAtt": [ "OpsManagerInstance", "PublicDnsName" ] },
+      "Description" : "The public DNS name of your OpsManger"
     },
     "01AccessKeyID": {
       "Value" : { "Ref" : "myaccesskey" },
@@ -128,42 +132,7 @@
    "30AWSSecretKey":{
       "Value" : { "Fn::GetAtt" : [ "myaccesskey", "SecretAccessKey" ]},
       "Description" : "Copy value to File Storage Config->Amazon S3->Secret Key"
-    },
-    "NatEip1": {
-      "Description": "AWS Elastic IP of the NAT instance 1",
-      "Value": {
-        "Ref": "NatEip1"
-      }
-    },
-   "AWSAZ": {
-      "Description": "AWS AZ selected",
-      "Value": {"Fn::Select" : [ "0", { "Fn::GetAZs" : { "Ref" : "AWSRegion" }  } ] }
-
-    },
-   "PrivateSubnetAZ1" : {
-      "Value" : { "Ref" : "PrivateSubnetAZ1" },
-      "Description" : "This is the SubnetID of the Private Subnet"
-   },
-   "PublicSubnetAZ1" : {
-      "Value" : { "Ref" : "PublicSubnetAZ1" },
-      "Description" : "This is the SubnetID of the Public Subnet"
-   },
-   "RDSHost": {
-      "Value": {"Fn::GetAtt" : [ "MyRDS" , "Endpoint.Address" ]},
-      "Description": "This is the RDS host endpoint"
-    },
-    "RDSPort":{
-      "Value": {"Fn::GetAtt" : [ "MyRDS" , "Endpoint.Port" ]},
-      "Description": "This is the RDS port"
-    },
-   "ElasticLoadBalancer" : {
-      "Description": "The DNSName of the PCF Elastic Load Balancer",  
-      "Value" : { "Fn::GetAtt" : [ "ElasticLoadBalancer", "DNSName" ]}
-   },
-    
-   "OpsManDNS" : {
-      "Value" : { "Fn::GetAtt": [ "OpsManagerInstance", "PublicDnsName" ] },
-      "Description" : "This is the PublicDNS Name of OpsManger"
+    }
    }    
 
   },
