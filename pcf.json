@@ -1,7 +1,8 @@
 
 {
   "Description": "pivotalcf template",
-  "Outputs": {
+  "Outputs": 
+  {
     "00OpsMngConfig": {
       "Value" : {},
       "Description" : "AWS Ops Manager Director Configruation Values"
@@ -67,7 +68,6 @@
       "Description": "Copy value to Director Config->External MySQL Database->Database"
     },
     "15AmazonAvailabilityZone": {
-
       "Value": {"Fn::Select" : [ "0", { "Fn::GetAZs" : { "Ref" : "AWSRegion" }  } ] },
       "Description": "Copy value to Create Availability Zones->Amazon Availability Zone"
     },
@@ -119,13 +119,11 @@
       "Value": { "Ref" : "DBPassword"},
       "Description": "Copy value to System Database Config->External Databases->Password"
     },
-     "28ElasticRuntimeBucketName": {
-            "Value": {
-                "Ref": "elasticruntimebucket"
-            },
-            "Description": "Copy value to File Storage Config->Amazon S3->Bucket Name"
-        },
-        "29AccessKeyID": {
+    "28ElasticRuntimeBucketName": {
+      "Value": {"Ref": "elasticruntimebucket"},
+      "Description": "Copy value to File Storage Config->Amazon S3->Bucket Name"
+    },
+    "29AccessKeyID": {
       "Value" : { "Ref" : "myaccesskey" },
       "Description" : "Copy value to File Storage Config->Amazon S3->Access Key"  
     },
@@ -133,9 +131,7 @@
       "Value" : { "Fn::GetAtt" : [ "myaccesskey", "SecretAccessKey" ]},
       "Description" : "Copy value to File Storage Config->Amazon S3->Secret Key"
     }
-   }    
-
-  }
+  },    
   "Parameters": {
     "ElasticRuntimeURL": {
       "Type": "String",
