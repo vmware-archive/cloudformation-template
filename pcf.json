@@ -1,7 +1,7 @@
 
 {
   "Description": "Template for configuring Pivotal Cloud Foundry on AWS",
-  "Outputs": 
+  "Outputs":
   {
     "00OpsManDNS" : {
       "Value" : { "Fn::GetAtt": [ "OpsManagerInstance", "PublicDnsName" ] },
@@ -16,12 +16,12 @@
     },
     "02AWSSecretKey":{
       "Value" : { "Fn::GetAtt" : [ "myaccesskey", "SecretAccessKey" ]},
-      "Description" : "Copy value to AWS Management Console Config->AWS Secret Key" 
+      "Description" : "Copy value to AWS Management Console Config->AWS Secret Key"
     },
     "03VPCID" : {
       "Value" : { "Ref" : "PCFVPC" },
       "Description" : "Copy value to AWS Management Console Config->VPC ID"
-    }, 
+    },
    "04SecurityGroupName": {
       "Value": "https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#SecurityGroups:search=pcfvms;sort=groupId",
       "Description" : "Click on the URL to the right, copy the 'Group Name' value to AWS Management Console Config->VPC ID"
@@ -40,7 +40,7 @@
     },
    "08AccessKeyID": {
       "Value" : { "Ref" : "myaccesskey" },
-      "Description" : "Copy value to Director Config->Amazon S3->Access Key"  
+      "Description" : "Copy value to Director Config->Amazon S3->Access Key"
     },
    "09AWSSecretKey":{
       "Value" : { "Fn::GetAtt" : [ "myaccesskey", "SecretAccessKey" ]},
@@ -94,42 +94,38 @@
       "Value":"10.0.16.1",
       "Description":"Suggested default value for Create Network->Gateway"
     },
-    "22ERSTileValues":{
-      "Value":"10.0.16.1",
-      "Description":"Suggested default value for Create Network->Gateway"
-    },
-    "23ElasticRuntimeConfigs": {
+    "22ElasticRuntimeConfigs": {
       "Value" : ""
     },
-    "24RDSHost": {
+    "23RDSHost": {
       "Value": {"Fn::GetAtt" : [ "MyRDS" , "Endpoint.Address" ]},
       "Description" : "Copy value to System Database Config->External Databases->Hostname DNS Name"
     },
-    "25RDSPort":{
+    "24RDSPort":{
       "Value": {"Fn::GetAtt" : [ "MyRDS" , "Endpoint.Port" ]},
       "Description" : "Copy value to System Database Config->External Databases->TCP Port"
     },
-    "26RDSUserID":{
+    "25RDSUserID":{
       "Value": { "Ref" : "DBUser"},
       "Description" : "Copy value to System Database Config->External Databases->Username"
     },
-    "27RDSPassword":{
+    "26RDSPassword":{
       "Value": { "Ref" : "DBPassword"},
       "Description": "Copy value to System Database Config->External Databases->Password"
     },
-    "28ElasticRuntimeBucketName": {
+    "27ElasticRuntimeBucketName": {
       "Value": {"Ref": "elasticruntimebucket"},
       "Description": "Copy value to File Storage Config->Amazon S3->Bucket Name"
     },
-    "29AccessKeyID": {
+    "28AccessKeyID": {
       "Value" : { "Ref" : "myaccesskey" },
-      "Description" : "Copy value to File Storage Config->Amazon S3->Access Key"  
+      "Description" : "Copy value to File Storage Config->Amazon S3->Access Key"
     },
-   "30AWSSecretKey":{
+   "29AWSSecretKey":{
       "Value" : { "Fn::GetAtt" : [ "myaccesskey", "SecretAccessKey" ]},
       "Description" : "Copy value to File Storage Config->Amazon S3->Secret Key"
     }
-  },    
+  },
   "Parameters": {
     "ElasticRuntimeURL": {
       "Type": "String",
@@ -186,7 +182,7 @@
       "Default": "ami-fa5b6792",
       "Description": "Enter Ops Manager AMI"
     },
-   
+
     "AWSRegion": {
       "Type": "String",
       "Default": "us-east-1",
@@ -213,7 +209,7 @@
    "opsmanagerbucket": {
     "Type" : "AWS::S3::Bucket",
     "Properties" : {
-   
+
       "Tags" : [
           {
             "Key": "Name",
@@ -234,7 +230,7 @@
         ]
    }
    },
-       
+
 "pcfiamuser" : {
    "Type" : "AWS::IAM::User",
    "Properties" : {
@@ -242,7 +238,7 @@
       "LoginProfile" : {
          "Password" : "myP@ssW0rd"
       }
-      
+
    }
 },
 "myaccesskey" : {
@@ -285,7 +281,7 @@
         "Action": [
             "s3:*"
         ],
-        "Resource": [ 
+        "Resource": [
            { "Fn::Join": ["",["arn:aws:s3:::",{ "Ref" : "elasticruntimebucket"       }]]},
            { "Fn::Join": ["",["arn:aws:s3:::",{ "Ref" : "elasticruntimebucket"}, "/*" ]]},
            {"Fn::Join": ["",["arn:aws:s3:::", { "Ref" : "opsmanagerbucket"           }]]},
@@ -338,7 +334,7 @@
      }
    ]
    },
-   
+
       "Users": [ { "Ref": "pcfiamuser" } ]
     }
 
@@ -385,8 +381,8 @@
             "#!/bin/bash -ex","\n",
              "sleep 45","\n",
             "## This sleep just makes sure opsmanager gets started up before doing curl below - probably better way to do this","\n",
-            "curl --insecure \"https://localhost/api/users\" -d 'user[user_name]=",{ "Ref" : "OpsMgrWebUID" },"&user[password]=",{ "Ref" : "OpsMgrWebPW" },"&user[password_confirmation]=",{ "Ref" : "OpsMgrWebPW" },"' -X POST","\n",                 
-            "printf 'create database uaa;\ncreate database ccdb;\ncreate database console;\ncreate database notifications;\ncreate database autoscale;\ncreate database app_usage_service;\n' > /tmp/createdb.sql","\n", 
+            "curl --insecure \"https://localhost/api/users\" -d 'user[user_name]=",{ "Ref" : "OpsMgrWebUID" },"&user[password]=",{ "Ref" : "OpsMgrWebPW" },"&user[password_confirmation]=",{ "Ref" : "OpsMgrWebPW" },"' -X POST","\n",
+            "printf 'create database uaa;\ncreate database ccdb;\ncreate database console;\ncreate database notifications;\ncreate database autoscale;\ncreate database app_usage_service;\n' > /tmp/createdb.sql","\n",
             "mysql -h ",{"Fn::GetAtt" : [ "MyRDS" , "Endpoint.Address" ]}," -u ",{ "Ref" : "DBUser" }," -p",{ "Ref" : "DBPassword" }," < /tmp/createdb.sql","\n",
             "erurl=",{"Ref": "ElasticRuntimeURL"},"\n",
             "if [ ${#erurl} -gt 5 ]; then","\n",
@@ -493,7 +489,7 @@
         "GroupDescription": "Allow NAT access from the VPC",
 
         "SecurityGroupIngress": [
-          
+
           {
             "CidrIp": "10.0.0.0/16",
             "IpProtocol": "-1"
@@ -516,7 +512,7 @@
         "GroupDescription": "PCF VMs Security Group",
 
         "SecurityGroupIngress": [
-          
+
           {
             "CidrIp": "10.0.0.0/16",
             "IpProtocol": "-1"
@@ -539,8 +535,8 @@
         "GroupDescription": "MySQL Security Group for PCF",
 
         "SecurityGroupIngress": [
-          
-       
+
+
           {
             "CidrIp": "10.0.0.0/16",
             "FromPort": "3306",
@@ -565,8 +561,8 @@
         "GroupDescription": "PCF Elastic Load Balancer SecurityGroup",
 
         "SecurityGroupIngress": [
-          
-       
+
+
           {
             "CidrIp": "0.0.0.0/0",
             "FromPort": "4443",
@@ -680,7 +676,7 @@
         ]
       },
       "Type": "AWS::EC2::Subnet"
-      
+
     },
     "rds1": {
       "Properties": {
