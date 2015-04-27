@@ -7,6 +7,10 @@
       "Value" : { "Fn::GetAtt": [ "OpsManagerInstance", "PublicDnsName" ] },
       "Description" : "The public DNS name of your OpsManger"
     },
+    "ElasticLoadBalancer" : {
+      "Description": "The DNSName of the PCF Elastic Load Balancer",  
+      "Value" : { "Fn::GetAtt" : [ "ElasticLoadBalancer", "DNSName" ]}
+   },
     "00DirectorConfigs": {
       "Value" : ""
     },
