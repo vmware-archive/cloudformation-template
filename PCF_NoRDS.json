@@ -84,7 +84,11 @@
    "29AWSSecretKey":{
       "Value" : { "Fn::GetAtt" : [ "myaccesskey", "SecretAccessKey" ]},
       "Description" : "Copy value to File Storage Config->Amazon S3->Secret Key"
-    }
+    },
+    "OpsManDNS" : {
+      "Value" : { "Fn::GetAtt": [ "OpsManagerInstance", "PublicDnsName" ] },
+      "Description" : "This is the PublicDNS Name of OpsManger"
+   }    
   },
   "Parameters": {
     "ElasticRuntimeURL": {
