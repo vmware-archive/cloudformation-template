@@ -132,7 +132,7 @@
     },
     "OpsMgrAMI": {
       "Type": "String",
-      "Default": "ami-36030c5e",
+      "Default": "",
       "Description": "Enter Ops Manager AMI"
     },
 
